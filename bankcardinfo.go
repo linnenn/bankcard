@@ -10,13 +10,15 @@ import (
 )
 
 type BankCardInfoStruct struct {
-	Validated    bool   `json:"validated"`
-	ValidatedMsg string `json:"validated_msg"`
-	Bank         string `json:"bank"`
-	BankName     string `json:"bank_name"`
-	BankImg      string `json:"bank_img"`
-	CardType     string `json:"card_type"`
-	CardTypeName string `json:"card_type_name"`
+	Validated       bool   `json:"validated"`
+	ValidatedMsg    string `json:"validated_msg"`
+	BankENShortName string `json:"bank_en_short_name"`
+	BankENFullName  string `json:"bank_en_full_name"`
+	BankCNShortName string `json:"bank_cn_short_name"`
+	BankCNFullName  string `json:"bank_cn_full_name"`
+	BankImg         string `json:"bank_img"`
+	CardType        string `json:"card_type"`
+	CardTypeName    string `json:"card_type_name"`
 }
 
 func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
@@ -64,11 +66,13 @@ func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
 		bankName = bank
 	}
 	return nil, &BankCardInfoStruct{
-		Validated:    true,
-		Bank:         result.Bank,
-		BankName:     bankName,
-		BankImg:      fmt.Sprintf(bankImageUrl, result.Bank),
-		CardType:     result.CardType,
-		CardTypeName: bankCardTypeMap[result.CardType],
+		Validated:       true,
+		BankENShortName: result.Bank,
+		BankENFullName:  result.Bank,
+		BankCNShortName: bankName,
+		BankCNFullName:  bankName,
+		BankImg:         fmt.Sprintf(bankImageUrl, result.Bank),
+		CardType:        result.CardType,
+		CardTypeName:    bankCardTypeMap[result.CardType],
 	}
 }
