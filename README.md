@@ -2,11 +2,11 @@
 
 Introduction
 ------------
-根据银行卡号获取银行信息（银行名称, 信用卡/借记卡/准贷记卡/预付费卡, 银行LOGO 等）支持go1.14+.
+根据银行卡号获取银行信息（银行名称, 信用卡/借记卡/准贷记卡/预付费卡, 银行LOGO 等）支持go1.12+.
 
 
 ## Install
-`go version:go+1.14`
+`go version:go1.12+`
 
 `go get -u github.com/linnenn/backcard`
 
