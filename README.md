@@ -1,6 +1,10 @@
 # BankCardInfo 
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linnenn/backcard/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/linnenn/backcard/?branch=main)
+[![Build Status](https://scrutinizer-ci.com/g/linnenn/backcard/badges/build.png?b=main)](https://scrutinizer-ci.com/g/linnenn/backcard/build-status/main)
+
 Introduction
+
 ------------
 根据银行卡号获取银行信息（银行名称, 信用卡/借记卡/准贷记卡/预付费卡, 银行LOGO 等）支持go1.12+.
 
