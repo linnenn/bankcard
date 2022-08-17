@@ -8,7 +8,7 @@ Introduction
 ## Install
 `go version:go+1.14`
 
-`go get -u github.com/linnenn/backcard"`
+`go get -u github.com/linnenn/backcard`
 
 ## Usage
 
