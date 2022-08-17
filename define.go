@@ -1,4 +1,4 @@
-package bankcard
+package backcard
 
 import (
 	"net"
@@ -25,7 +25,7 @@ var ShortMap = map[string]string{
 }
 
 const bankImageUrl = "https://apimg.alipay.com/combo.png?d=cashier&t=%s"
-const getBankInfo = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json"
+const getBankInfo = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?%s"
 
 var CommonHttpClient5s = &http.Client{
 	Timeout: 5 * time.Second,

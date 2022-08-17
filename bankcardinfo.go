@@ -1,12 +1,12 @@
-package bankcard
+package backcard
 
 import (
-	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
 	"net/http"
+	"net/url"
 )
 
 type GetBankInfo struct {
@@ -19,13 +19,11 @@ type GetBankInfo struct {
 }
 
 func BankInfo(cardNO string) (error, *GetBankInfo) {
-	request := map[string]interface{}{
-		"_input_charset": "utf-8",
-		"cardNo":         cardNO,
-		"cardBinCheck":   true,
-	}
-	body, _ := json.Marshal(request)
-	req, err := http.NewRequest(http.MethodPost, getBankInfo, bytes.NewBuffer(body))
+	form := url.Values{}
+	form.Add("_input_charset", "utf-8")
+	form.Add("cardNo", cardNO)
+	form.Add("cardBinCheck", "true")
+	req, err := http.NewRequest(http.MethodPost, fmt.Sprintf(getBankInfo, form.Encode()), nil)
 	if err != nil {
 		return err, nil
 	}
@@ -34,7 +32,7 @@ func BankInfo(cardNO string) (error, *GetBankInfo) {
 		return err, nil
 	}
 	defer resp.Body.Close()
-	body, err = io.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err, nil
 	}
@@ -63,7 +61,6 @@ func BankInfo(cardNO string) (error, *GetBankInfo) {
 	if bank, ok := BankNameMap[result.Bank]; ok {
 		bankName = bank
 	}
-	//resp.bank
 	return nil, &GetBankInfo{
 		Validated:    true,
 		Bank:         result.Bank,
