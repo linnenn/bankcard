@@ -1,7 +1,6 @@
 package backcard
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -25,6 +24,5 @@ func TestBankInfo(t *testing.T) {
 		err, g := BankCardInfo(card)
 		assert.Nil(t, err)
 		t.Log(g)
-		fmt.Printf("%+v", g)
 	}
 }
