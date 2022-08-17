@@ -1,6 +1,7 @@
 package backcard
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -35,8 +36,8 @@ func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
 		return err, nil
 	}
 	defer resp.Body.Close()
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
+	var body bytes.Buffer
+	if len, err := io.Copy(&body, resp.Body); err != nil && len > 0 {
 		return err, nil
 	}
 	type AliPayBankInfo struct {
@@ -51,7 +52,7 @@ func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
 		Stat      string `json:"stat"`
 	}
 	result := new(AliPayBankInfo)
-	if err := json.Unmarshal(body, result); err != nil {
+	if err := json.Unmarshal(body.Bytes(), result); err != nil {
 		return err, nil
 	}
 	if !result.Validated {
