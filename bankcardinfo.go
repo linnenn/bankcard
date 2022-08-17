@@ -37,7 +37,7 @@ func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
 	}
 	defer resp.Body.Close()
 	var body bytes.Buffer
-	if len, err := io.Copy(&body, resp.Body); err != nil && len > 0 {
+	if length, err := io.Copy(&body, resp.Body); err != nil && length > 0 {
 		return err, nil
 	}
 	type AliPayBankInfo struct {
