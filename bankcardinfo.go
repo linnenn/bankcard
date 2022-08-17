@@ -9,8 +9,9 @@ import (
 	"net/url"
 )
 
-type GetBankInfo struct {
+type BankCardInfoStruct struct {
 	Validated    bool   `json:"validated"`
+	ValidatedMsg string `json:"validated_msg"`
 	Bank         string `json:"bank"`
 	BankName     string `json:"bank_name"`
 	BankImg      string `json:"bank_img"`
@@ -18,7 +19,7 @@ type GetBankInfo struct {
 	CardTypeName string `json:"card_type_name"`
 }
 
-func BankInfo(cardNO string) (error, *GetBankInfo) {
+func BankCardInfo(cardNO string) (error, *BankCardInfoStruct) {
 	form := url.Values{}
 	form.Add("_input_charset", "utf-8")
 	form.Add("cardNo", cardNO)
@@ -27,7 +28,7 @@ func BankInfo(cardNO string) (error, *GetBankInfo) {
 	if err != nil {
 		return err, nil
 	}
-	resp, err := CommonHttpClient5s.Do(req)
+	resp, err := commonHttpClient5s.Do(req)
 	if err != nil {
 		return err, nil
 	}
@@ -53,20 +54,21 @@ func BankInfo(cardNO string) (error, *GetBankInfo) {
 	}
 	if !result.Validated {
 		err := errors.New(result.Messages[0].ErrorCodes)
-		return err, &GetBankInfo{
-			Validated: false,
+		return err, &BankCardInfoStruct{
+			Validated:    false,
+			ValidatedMsg: "cardNO error",
 		}
 	}
 	bankName := ""
-	if bank, ok := BankNameMap[result.Bank]; ok {
+	if bank, ok := bankShortNameMap[result.Bank]; ok {
 		bankName = bank
 	}
-	return nil, &GetBankInfo{
+	return nil, &BankCardInfoStruct{
 		Validated:    true,
 		Bank:         result.Bank,
 		BankName:     bankName,
 		BankImg:      fmt.Sprintf(bankImageUrl, result.Bank),
 		CardType:     result.CardType,
-		CardTypeName: ShortMap[result.CardType],
+		CardTypeName: bankCardTypeMap[result.CardType],
 	}
 }

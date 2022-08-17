@@ -17,17 +17,17 @@ const DebitCardShort = "DC"
 const SemiCreditCardShort = "SCC"
 const PrepaymentCardShort = "PC"
 
-var ShortMap = map[string]string{
+var bankCardTypeMap = map[string]string{
 	CreditCardShort:     CreditCard,
 	DebitCardShort:      DebitCard,
 	SemiCreditCardShort: SemiCreditCard,
 	PrepaymentCardShort: PrepaymentCard,
 }
 
-const bankImageUrl = "https://apimg.alipay.com/combo.png?d=cashier&t=%s"
-const getBankInfo = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?%s"
+const bankImageUrl = "https://apimg.alipay.com/combo.png?d=cashier&t=%s"          //bank image
+const getBankInfo = "https://ccdcapi.alipay.com/validateAndCacheCardInfo.json?%s" //get bank info
 
-var CommonHttpClient5s = &http.Client{
+var commonHttpClient5s = &http.Client{
 	Timeout: 5 * time.Second,
 	Transport: &http.Transport{
 		MaxIdleConns:        500,
@@ -45,7 +45,9 @@ var CommonHttpClient5s = &http.Client{
 	},
 }
 
-var BankNameMap = map[string]string{
+var bankFullNameMap = map[string]string{}
+
+var bankShortNameMap = map[string]string{
 	"ABC":       "中国农业银行",
 	"ARCU":      "安徽省农村信用社",
 	"ASCB":      "鞍山银行",
@@ -216,11 +218,15 @@ var BankNameMap = map[string]string{
 	"ZZBANK":    "郑州银行",
 }
 
-func BankNames() []string {
-	banks := make([]string, 0, len(BankNameMap))
-	for _, bankName := range BankNameMap {
+func BankNameList() []string {
+	banks := make([]string, 0, len(bankShortNameMap))
+	for _, bankName := range bankShortNameMap {
 		banks = append(banks, bankName)
 	}
 	sort.Strings(banks)
 	return banks
+}
+
+func BankNameMapList() map[string]string {
+	return bankShortNameMap
 }

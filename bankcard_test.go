@@ -7,8 +7,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestBankNames(t *testing.T) {
-	resp := BankNames()
+func TestBankNameMapList(t *testing.T) {
+	resp := BankNameMapList()
+	t.Log(resp)
+}
+
+func TestBankNameList(t *testing.T) {
+	resp := BankNameList()
 	t.Log(resp)
 }
 
@@ -17,7 +22,7 @@ func TestBankInfo(t *testing.T) {
 		"6214850106608721", "6214850106608722",
 	}
 	for _, card := range cards {
-		err, g := BankInfo(card)
+		err, g := BankCardInfo(card)
 		assert.Nil(t, err)
 		t.Log(g)
 		fmt.Printf("%+v", g)

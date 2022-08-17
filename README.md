@@ -13,12 +13,14 @@ Introduction
 ## Usage
 
 ```
-bankcard::BankNames() //所有银行列表
+bankcard::BankNameMapList() //所有 银行缩写=> 银行名
+bankcard::BankNameList() //所有银行
 
-bankcard::BankInfo('6214850106608722');
+bankcard::BankCardInfo('6214850106608722');
 //返回
 {
  Validated:true // bank验证成功与否
+ ValidatedMsg: "cardNO error" //银行卡号错误
  Bank:CMB // 银行缩写
  BankName:招商银行   // 银行全名
  BankImg:https://apimg.alipay.com/combo.png?d=cashier&t=CMB  // 银行LOGO
