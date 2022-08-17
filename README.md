@@ -13,10 +13,10 @@ Introduction
 ## Usage
 
 ```
-bankcard::BankNameMapList() //所有 银行缩写=> 银行名
-bankcard::BankNameList() //所有银行
+backcard.BankNameMapList() //所有 银行缩写=> 银行名
+backcard.BankNameList() //所有银行
 
-bankcard::BankCardInfo('6214850106608722');
+bankcard.BankCardInfo('6214850106608722')
 //返回
 {
  Validated: true         // bank验证成功与否
