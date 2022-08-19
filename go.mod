@@ -1,4 +1,4 @@
-module github.com/linnenn/backcard
+module github.com/linnenn/bankcard
 
 go 1.14
 

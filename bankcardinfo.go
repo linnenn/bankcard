@@ -1,4 +1,4 @@
-package backcard
+package bankcard
 
 import (
 	"bytes"
