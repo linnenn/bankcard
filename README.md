@@ -1,4 +1,4 @@
-# BankCardInfo 
+# BankCard 
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/linnenn/backcard/badges/quality-score.png?b=main)](https://scrutinizer-ci.com/g/linnenn/backcard/?branch=main)
 [![Build Status](https://scrutinizer-ci.com/g/linnenn/backcard/badges/build.png?b=main)](https://scrutinizer-ci.com/g/linnenn/backcard/build-status/main)
