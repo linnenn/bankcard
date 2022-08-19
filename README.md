@@ -18,7 +18,7 @@ Introduction
 
 ```
 bankcard.BankNameMapList() //所有 银行缩写=> 银行名
-bankcard.BankNameList() //所有银行
+backcard.BankNameList() //所有银行
 
 bankcard.BankCardInfo('6214850106608722')
 //返回
